@@ -220,7 +220,7 @@ bool read_file(std::ifstream& infile, char* path) {
         for (int j = 0; j < 9; j++) {
             infile >> temp;
             bool ifread = infile.eof();
-            if (ifread && ( (i | j) != 0)) {
+            if (ifread && (i|j) != 0) {
                 throw std::exception("数据输入异常");
             }
             while (temp != '$' && (temp < '1' || temp>'9')) {
@@ -230,9 +230,7 @@ bool read_file(std::ifstream& infile, char* path) {
                 }
             }
             board[i][j] = temp;
-            std::cout << board[i][j];
         }
-        std::cout << '\n';
     }
     bool ifread = infile.eof();
     if (ifread)
@@ -433,14 +431,6 @@ int main(int argc, char** argv) {
             int ifsolve = 0;
             std::cout << "计算中...\n";
             dfs(0, ifsolve);
-            std::cout << ifsolve << '\n';
-            for (int i = 0; i < 9; i++) {
-                for (int j = 0; j < 9; j++) {
-                    std::cout << board[i][j];
-                }
-                std::cout << '\n';
-            }
-            std::cout << '\n';
             if (!ifsolve) {
                  std::cout << "该数独无解！\n";
                  write_fail("sudiku_result.txt");
