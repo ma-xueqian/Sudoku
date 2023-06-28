@@ -220,7 +220,7 @@ bool read_file(std::ifstream& infile, char* path) {
         for (int j = 0; j < 9; j++) {
             infile >> temp;
             bool ifread = infile.eof();
-            if (ifread) {
+            if (ifread && ( (i | j) != 0)) {
                 throw std::exception("数据输入异常");
             }
             while (temp != '$' && (temp < '1' || temp>'9')) {
